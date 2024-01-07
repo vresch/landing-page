@@ -10,7 +10,10 @@ interface BasicCardProps {
 export default function BasicCard({ title, description, imageUrl }: BasicCardProps) {
   return (
     <Card>
-      <NextImage src={imageUrl} width={128} height={128} alt={title} />
+      <ImageBox>
+        <NextImage src={imageUrl} width={128} height={128} sizes='100vw' layout='responsive' alt={title} 
+      />
+      </ImageBox>
       <Title>{title}</Title>
       <Description>{description}</Description>
     </Card>
@@ -34,6 +37,11 @@ const Card = styled.div`
   & > *:not(:first-child) {
     margin-top: 1rem;
   }
+`;
+
+const ImageBox = styled.div`
+  width: 128px;
+  height: 128px;
 `;
 
 const Title = styled.div`

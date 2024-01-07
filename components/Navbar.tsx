@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-import { useNewsletterModalContext } from 'contexts/newsletter-modal.context';
+import { useCalendarModalContext } from 'contexts/calendar-modal.context';
 import { ScrollPositionEffectProps, useScrollPosition } from 'hooks/useScrollPosition';
 import { NavItems, SingleNavItem } from 'types';
 import { media } from 'utils/media';
@@ -70,6 +70,7 @@ export default function Navbar({ items }: NavbarProps) {
         <NextLink href="/" passHref>
           <LogoWrapper>
             <Logo />
+            <LogoText>Max Vresch</LogoText>
           </LogoWrapper>
         </NextLink>
         <NavItemList>
@@ -89,14 +90,14 @@ export default function Navbar({ items }: NavbarProps) {
 }
 
 function NavItem({ href, title, outlined }: SingleNavItem) {
-  const { setIsModalOpened } = useNewsletterModalContext();
+  const { setIsModalOpened } = useCalendarModalContext();
 
-  function showNewsletterModal() {
+  function showCalendarModal() {
     setIsModalOpened(true);
   }
 
   if (outlined) {
-    return <CustomButton onClick={showNewsletterModal}>{title}</CustomButton>;
+    return <CustomButton onClick={showCalendarModal}>{title}</CustomButton>;
   }
 
   return (
@@ -190,4 +191,16 @@ const Content = styled(Container)`
 const ColorSwitcherContainer = styled.div`
   width: 4rem;
   margin: 0 1rem;
+`;
+
+const LogoText = styled.div`
+  border-radius: 0.5rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  line-height: 2;
+  align-items: left;
+  letter-spacing: 0.025em;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
 `;
